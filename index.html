@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etch-A-Sketch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="parent">
+        <button class="button">Reset</button>
+        <div class="container">
+
+        </div>
+    </div>
+    
+        
+    
+
+    <script>
+        const container = document.querySelector('.container');
+       function makeGrid()
+       {
+        let size = parseInt(prompt("Enter the size of the grid (MAX 100)"));
+        const container = document.querySelector('.container');
+        for(let i=0; i< size * size; i++)
+        {
+            const grid = document.createElement('div');
+            grid.classList.add('grid');
+            let width = Math.floor(960/size);
+            let new_width = width + "px";
+            
+            grid.style.width =  new_width;
+            grid.style.height = new_width;
+            
+            container.appendChild(grid);
+            grid.addEventListener('mouseenter', function(e){
+                let r = Math.floor(Math.random()*255);
+               let g = Math.floor(Math.random()*255);
+               let b = Math.floor(Math.random()*255);
+               let col = "rgb(" + r + "," + g + "," + b + ")";
+               e.target.style.backgroundColor = col;
+            })
+           
+
+        }
+       }
+        function clearGrid(){
+            let list = document.getElementsByClassName("grid");
+            for(let j = 0; j<list.length; j++)
+            {
+                list[j].style.backgroundColor = "white";
+                
+            }
+            while(container.firstChild){
+                container.removeChild(container.firstChild);
+            }
+            
+        }
+        function rePrint(){
+            
+            size = parseInt(prompt("Enter the size of the grid (MAX 100)"));
+
+        }
+
+
+        const button = document.querySelector('.button');
+        button.addEventListener('click', clearGrid);
+        button.addEventListener('click', makeGrid);
+        makeGrid();
+        
+        
+
+
+        
+
+        
+    </script>
+</body>
+</html>
